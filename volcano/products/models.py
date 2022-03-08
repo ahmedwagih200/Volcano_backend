@@ -1,5 +1,5 @@
 from django.db import models
-
+from customer.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -12,7 +12,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=250, null=True)
     price = models.IntegerField(default=0, null=True)
-    description = models.CharField(max_length=350, null=True)
+    #description = models.CharField(max_length=350, null=True)
     image = models.ImageField(upload_to='products')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
@@ -20,11 +20,22 @@ class Product(models.Model):
         return self.name
 
 
-# class Order(models.Model):
-#     state=models.ForeignKey('Status', on_delete=models.CASCADE)
-#     user=models.ForeignKey('Customer', on_delete=models.CASCADE)
-#     delivery=models.ForeignKey('Delivery_man', on_delete=models.CASCADE)
-#     date=models.DateTimeField(auto_now_add=True)
+class Order(models.Model):
+    #state=models.ForeignKey('Status', on_delete=models.CASCADE)
+    user=models.ForeignKey('customer.User', on_delete=models.CASCADE , null=True)
+    #delivery=models.ForeignKey('Delivery_man', on_delete=models.CASCADE)
+    date=models.DateTimeField(auto_now_add=True)
+    
+    total = models.IntegerField(default=0, null=True)
+
+
+class order_item(models.Model):
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    qty = models.IntegerField(default=0, null=True)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE, null=True)
+    
+
+
 
 
 # class order_product(models.Model):
