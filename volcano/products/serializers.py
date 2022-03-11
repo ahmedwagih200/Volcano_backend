@@ -17,13 +17,15 @@ class cate_serializer(serializers.ModelSerializer):
 
 class order_serializer(serializers.ModelSerializer):
     date = serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S")
+
     class Meta:
         model = Order
         fields = '__all__'
 
+
 class order_item_serializer(serializers.ModelSerializer):
-    item=prod_serializer()
+    item = prod_serializer()
+
     class Meta:
         model = order_item
-        fields = ['item' , 'qty']
-
+        fields = ['item', 'qty']
