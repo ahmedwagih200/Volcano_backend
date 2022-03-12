@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'volcano.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Volcano',
+        'NAME': 'volcano1',
         'USER': 'postgres',
         'PASSWORD': 'ahmed',
         'HOST': 'localhost'

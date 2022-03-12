@@ -1,1 +1,139 @@
 {% extends 'home.html' %}
+{% block content%}
+
+<div  class="container mt-2 mx-5 ">
+    <div class="row ">  
+
+
+    
+
+     <div class="col-3 offset-9"  >
+         <button type="button" class="btn btn-dark my-2  " data-bs-toggle="modal" data-bs-target="#add-prod">
+             Add Product
+            </button>
+        </div>
+        
+
+        <div class="col-9 offset-1">           
+    <table class="table mx-5 ">
+        <thead class="table-dark rounded-top" style=" height: 60px ; font-size: 25px; "  >
+            <th> </th>
+            <th> Product Name </th>
+            <th> Price </th>
+            <th> Category </th>
+            <th> </th>
+
+        </thead>
+        <tbody class="table-light"  >
+            {% for p in prods  %}
+            <tr>
+                <td  ><img src="/media/{{p.image}}" class="ml-4" style=" height: 4rem ; width: 5rem; "   >
+
+
+                </td>
+                <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ p.name }} </td>
+                
+
+                <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ p.price }} EGP </td>
+                
+
+                    <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ p.category.name }} </td>
+
+                    <td>
+                      <button type="button" class="btn btn-outline-dark mx-4 my-3 " data-bs-toggle="modal" data-bs-target="#pbtn{{forloop.counter}}">
+                        Update
+                       </button>
+                   
+                   <a  style="font-family: Arial;"  class="btn btn-outline-dark my-3 " href="/del-prod/{{p.id}}">
+                     Delete
+                   </a>
+                    
+
+                </td> </tr>
+
+
+                <div class="modal fade " id="pbtn{{forloop.counter}}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLabel"> Update Product </h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         <form method="post"  enctype="multipart/form-data">
+                             {% csrf_token %}
+                         
+                             
+                             <label  class="form-label"> Product Name </label>
+                             
+                                 <input type="text" name="upname" class="form-control" value="{{p.name}}" > <br>
+                                 
+                                 <label  class="form-label"> Price </label>
+                             
+                                 <input type="number" name="price" class="form-control" value="{{p.price}}" > <br>
+                                 
+                                 <label  class="form-label"> Category </label>
+                             
+                                 {{form1.category}} <br>
+                                 
+
+
+                                   <input value="{{p.id}}" name="pid"  hidden  >  
+                             
+                             
+                              
+                             <div class="mt-3 d-flex justify-content-center">
+                                
+                          <input type="submit" class="btn btn-dark " value="Update" >  </div>
+                         
+                             </form>
+                      
+                     </div>
+                     
+                   </div>
+                 </div>
+               </div>
+            
+            {% endfor   %}
+
+        </tbody>
+
+    </table>
+   
+  </div>
+
+  </div>
+
+  <div class="modal fade" id="add-prod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel"> Add Product </h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <form method="post"  enctype="multipart/form-data">
+                 {% csrf_token %}
+
+                 {{form1.as_p}}
+             
+
+                 
+                 <div class="mt-4 d-flex justify-content-center">
+                    
+              <input type="submit" class="btn btn-dark " value="Save" name="abtn" >  </div>
+             
+                 </form>
+          
+         </div>
+         
+       </div>
+     </div>
+   </div>
+
+  
+ 
+</div>
+
+
+{%endblock%}

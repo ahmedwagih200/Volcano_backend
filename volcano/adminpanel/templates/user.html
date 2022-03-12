@@ -1,0 +1,79 @@
+{% extends 'home.html' %}
+{% block content%}
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-3 offset-9"  >
+            <button type="button" class="btn btn-dark my-2  " data-bs-toggle="modal" data-bs-target="#add-user">
+                Add User
+               </button>
+        </div>
+        <div class="col-9 offset-1">    
+        <div class="table-responsive">
+            <table class="table   ">
+                <thead class="table-dark rounded-top" style=" height: 62px ; font-size: 23px; "   >
+                    <th> User ID  </th>
+                    <th> First Name </th>
+                    <th> Last Name </th>
+                    <th> Email </th>
+                    <th> Phone  </th>
+                    <th>  Addresss </th>  
+                    <th> </th>                 
+                </thead>
+                <tbody>
+                    {% for usr in users %}
+                    <tr>
+                        <td>{{usr.id}} </td>
+                        <td>{{usr.first_name}} </td>
+                        <td>{{usr.last_name}} </td>
+                        <td>{{usr.email}} </td>
+                        <td>{{usr.phone}} </td>
+                        <td>{{usr.address}} </td>
+                        <td>
+                            <a  style="font-family: Arial;"  class="btn btn-outline-dark  " href="/del-user/{{usr.id}}">
+                                Delete
+                              </a>                              
+                            
+
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- modal -->
+<div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Add User </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{form.as_p}}
+            
+
+                
+                <div class="mt-4 d-flex justify-content-center">
+                   
+             <input type="submit" class="btn btn-dark " value="Save" name="abtn" >  </div>
+            
+                </form>
+         
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+{%endblock%}

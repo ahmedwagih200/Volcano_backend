@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+{% block content%}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class=" col-6 offset-2" >
+
+            <h5  > Order ID : {{ord.0.order.id}}  </h5>
+        <div class="table-responsive">
+         
+
+
+    <table class="table mt-3  ">
+        <thead class="table-dark rounded-top" style=" height: 62px ; font-size: 23px; "   >
+            
+            <th> </th>
+            <th> Item </th>
+            <th> Price Per Unit </th>
+            <th> Quatity </th>
+           
+
+        </thead>
+        <tbody class="table-light"  >
+            {% for itm in ord  %}
+            <tr>
+                <td  ><img src="/media/{{itm.item.image}}" class="ml-4" style=" height: 4rem ; width: 5rem; "   >
+
+
+                </td>
+                <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ itm.item.name }} </td>
+                
+
+                <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ itm.item.price }} EGP </td>
+                <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ itm.qty }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+
+            </div>
+   </div>
+   </div>
+   </div>
+{%endblock%}
