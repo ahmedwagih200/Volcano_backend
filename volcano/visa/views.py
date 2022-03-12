@@ -6,6 +6,7 @@ import stripe
 
 stripe.api_key = 'sk_test_51KbPVaL10zxMRfSILB2TMEdk47dtc0MLTnbi8c1pycGKLhN4xnDUalV8JvQeH9mrifZVprtQ3W1dLsqZJ91jJwgg00s7QXnz4b'
 
+
 class StripeCheckoutView(APIView):
     def post(self, request):
 

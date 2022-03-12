@@ -14,6 +14,8 @@ from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import django_heroku
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-(ssw$405_n6lbeu6_iz*cv6ivhwet1qit686yfon1f5s6c38=i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['test200200123.herokuapp.com']
 
 # Application definition
 
@@ -43,7 +45,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'products',
     'visa',
-    'feedback',
     'adminpanel'
 ]
 
@@ -85,10 +86,11 @@ WSGI_APPLICATION = 'volcano.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Volcano',
-        'USER': 'postgres',
-        'PASSWORD': 'ahmed',
-        'HOST': 'localhost'
+        'NAME': 'de3ouvbslfril',
+        'USER': 'jzcecgoweuptst',
+        'PASSWORD': '0dc0c3cecd66df779283a220e2550adf3dfad3f034fedd5ca46ccfd60b56b134',
+        'HOST': 'ec2-52-19-164-214.eu-west-1.compute.amazonaws.com',
+        'port': '5432',
     }
 }
 
@@ -128,6 +130,7 @@ STATIC_URL = 'static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+django_heroku.settings(locals())
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
