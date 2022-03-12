@@ -17,6 +17,7 @@ class Product(models.Model):
     #description = models.CharField(max_length=350, null=True)
     image = models.ImageField(upload_to='products')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    price_id = models.CharField(max_length=250, null=True)
 
     def __str__(self):
         return self.name
@@ -50,10 +51,8 @@ class order_item(models.Model):
 
 
 
+    total = models.IntegerField(default=0, null=True)
 
-# class order_product(models.Model):
-#     order=models.ForeignKey('Order', on_delete=models.CASCADE)
-#     product=models.ForeignKey('Product', on_delete=models.CASCADE)
 
 #     class Meta:
 #         unique_together = ('order', 'product')

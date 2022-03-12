@@ -1,6 +1,8 @@
 from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth import password_validation
 
 
 # Create your models here.
@@ -11,11 +13,8 @@ class UserAccountManager(BaseUserManager):
 
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-
         user.set_password(password)
-
         user.save()
-
         return user
 
     def create_superuser(self, email, password, **extra_fields):
@@ -28,9 +27,7 @@ class UserAccountManager(BaseUserManager):
         user.is_staff = True
         user.is_active = True
         user.set_password(password)
-
         user.save()
-
         return user
 
 
@@ -50,11 +47,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone', 'address']
 
-    def get_full_name(self):
-        return self.first_name
-
-    def get_short_name(self):
+    def get_name(self):
         return self.first_name
 
     def __str__(self):
         return self.email
+
+
+class Review(models.Model):
+    name = models.CharField(max_length=255)
+    rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
+    content = models.TextField(max_length=255)

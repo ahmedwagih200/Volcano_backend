@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'products',
+    'visa',
+    'feedback',
     'adminpanel'
 ]
 
@@ -56,13 +58,14 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 
 ]
+
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'volcano.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'volcano1',
         'USER': 'postgres',
-        'PASSWORD': '12345',
+        'PASSWORD': 'ahmed',
         'HOST': 'localhost'
     }
 }
@@ -127,6 +130,11 @@ STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -135,11 +143,12 @@ AUTH_USER_MODEL = 'customer.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ahmedxmen200@gmail.com'
-EMAIL_HOST_PASSWORD = 'elhycgrutaqefnfg'
+EMAIL_HOST_USER = 'ahmedwagihmohamed20@gmail.com'
+EMAIL_HOST_PASSWORD = 'omluowanhecsfhol'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+SITE_URL = 'http://localhost:3000'
 DOMAIN = 'localhost:3000'
 SITE_NAME = 'Frontend'
 
@@ -163,7 +172,7 @@ DJOSER = {
 }
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-
+        'rest_framework.permissions.AllowAny'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -184,3 +193,4 @@ SIMPLE_JWT = {
         'rest_framework_simplejwt.tokens.AccessToken',
     )
 }
+

@@ -67,6 +67,17 @@ def get_order(req  , id):
     
     return Response(serializer.data)
 
+
+
+@api_view(['GET'])
+def get_product_payment(req, id):
+    prod = Product.objects.filter(id=id)
+    serializer = prod_serializer(prod, many=True)
+
+    return Response(serializer.data)
+
+
+    
 # def test(req , id ):
 #     Order.objects.filter(id=id).delete()
 #     return HttpResponse('deleted')

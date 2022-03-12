@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
-from django.views.generic import TemplateView
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from products.views import *
 from adminpanel.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,12 +27,10 @@ urlpatterns = [
     path('del-prod/<id>' , del_prod) ,
     path('show-items/<id>' , show_items) ,
     path('del-user/<id>' , del_usr) ,
-    
-
-
-    
-
-    #path('test/<id>' , test)
+    path('review/', include('customer.urls')),
+    path('feedback/', include('feedback.urls')),
+    path('get_product_payment/<id>', get_product_payment),
+    path('api/stripe/', include('visa.urls')),
 
 ]
 
