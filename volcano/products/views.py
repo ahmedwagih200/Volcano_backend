@@ -35,7 +35,13 @@ def get_cate(req, id):
 def create_order(req ):
     print(req.data)
     user=User.objects.get(id=req.data['user'])
-    order= Order.objects.create(total=req.data['price'] , user=user)
+    s=Status.objects.get(id=1)
+    if req.data['cash'] == True :
+        order= Order.objects.create(total=req.data['price'] , user=user , address=req.data['address'] , phone=req.data['phone'] , payment='cash on delivery' , state=s)
+
+    else:
+        order= Order.objects.create(total=req.data['price'] , user=user , address=req.data['address'] , phone=req.data['phone'] , payment='pay online' , state=s)
+
     arr=req.data['items']
     for p in arr:
         item=Product.objects.get(id=p['id'])

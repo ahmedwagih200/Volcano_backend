@@ -23,7 +23,14 @@ urlpatterns = [
     path('admin-prod' , admin_prod ),
     path('admin-order' , admin_order ) ,
     path('admin-user' , admin_user ) ,
-    path('del-cate<id>' , del_cate)
+    path('del-cate/<id>' , del_cate) ,
+    path('del-prod/<id>' , del_prod) ,
+    path('show-items/<id>' , show_items) ,
+    path('del-user/<id>' , del_usr) ,
+    
+
+
+    
 
     #path('test/<id>' , test)
 

@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'volcano.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'volcano',
+        'NAME': 'volcano1',
         'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': 'localhost'

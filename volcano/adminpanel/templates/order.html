@@ -1,0 +1,146 @@
+{% extends 'home.html'%}
+
+{% block content  %}
+
+<div  class="container mt-4  ">
+    <div class="row ">  
+
+     
+        
+
+        <div class="col-12">           
+    <table class="table  ">
+        <thead class="table-dark rounded-top" style=" height: 62px ; font-size: 23px; "  >
+            <th> Order ID  </th>
+            <th> User ID </th>
+            <th>  Addresss </th>
+            <th> Order Cost </th>
+            <th> Order Date  </th>
+            <th> Payment Type </th>
+            <th> Status </th>
+            <th></th>
+
+        </thead>
+        <tbody class="table-light"  >
+            {% for o in orders  %}
+            <tr>
+                <td  >
+                    {{ o.id }}
+
+                </td>
+                <td  > {{o.user.id}} </td>
+                <td> {{o.address}} </td>
+                <td> {{o.total}} EGP </td>
+                <td> {{o.date}} </td>
+                <td> {{o.payment}} </td>
+                <td> {{o.state}} </td>
+                <td> 
+                    <button type="button" class="btn btn-outline-dark mx-4  " data-bs-toggle="modal" data-bs-target="#sbtn{{forloop.counter}}">
+                        Update Status
+                       </button>
+                    
+                       <a  style="font-family: Arial;"  class="btn btn-outline-dark  " href="/show-items/{{o.id}}">
+                       Order Items
+                      </a>
+                      
+
+                </td>
+                 
+                  </tr>
+                <div class="modal fade " id="sbtn{{forloop.counter}}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLabel"> Update Status </h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         <form method="post"  >
+                             {% csrf_token %}
+
+                             <label  class="form-label"> Status </label>
+                             
+                             {{form.state}} <br>
+                         
+                             
+                             
+                                   <input value="{{o.id}}" name="oid"  hidden  >  
+                             
+                             
+                             <div class="mt-3 d-flex justify-content-center">
+                                
+                          <input type="submit" class="btn btn-dark " value="Update Status" >  </div>
+                         
+                             </form>
+                      
+                     </div>
+                     
+                   </div>
+                 </div>
+               </div>
+
+               <!-- <div class="modal fade " id="ord{{forloop.counter}}"  tabindex="-1" aria-labelledby="test" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="test"> Order items </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                       <div class="container">
+                        <div class="row">
+                            
+                            <div class="table-responsive">
+
+
+                        <table class="table mt-3 table-striped ">
+                            <thead class="table-dark rounded-top"  >
+                                <tr>
+                                <th> </th>
+                                <th> Item </th>
+                                <th> Price Per Unit </th>
+                                <th> Quatity </th>
+                                </tr>
+                    
+                            </thead>
+                            <tbody class="table-light"  >
+                                {% for itm in o.get_items  %}
+                                <tr>
+                                    <td  ><img src="/media/{{itm.item.image}}" class="ml-4" style=" height: 4rem ; width: 5rem; "   >
+                    
+                    
+                                    </td>
+                                    <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ itm.item.name }} </td>
+                                    
+                    
+                                    <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ itm.item.price }} EGP </td>
+                                    <td class="pt-4 text-capitalize"  style="  font-size: 18px; " > {{ itm.qty }} </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                                </table>
+                       </div>
+                       </div>
+                       </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div> -->
+            
+            {% endfor   %}
+
+        </tbody>
+
+    </table>
+   
+  </div>
+
+  </div>
+
+ 
+ 
+</div>
+
+{% endblock %}

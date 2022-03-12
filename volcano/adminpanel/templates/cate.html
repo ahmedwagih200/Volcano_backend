@@ -35,7 +35,7 @@
 
 
                       
-                      <a  style="font-family: Arial;"  class="btn btn-outline-dark my-3 " href="/del-cate{{c.id}}">
+                      <a  style="font-family: Arial;"  class="btn btn-outline-dark my-3 " href="/del-cate/{{c.id}}">
                         Delete
                       </a>
                        
@@ -124,9 +124,3 @@
    </div>
 {% endblock%}
 
-
-<form method="post"  >
-    {% csrf_token %}
-
-    <input type="submit" class="btn btn-dark " value="update"  name> 
-</form>
