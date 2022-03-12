@@ -152,9 +152,9 @@ EMAIL_HOST_PASSWORD = 'omluowanhecsfhol'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-SITE_URL = 'http://localhost:3000'
-DOMAIN = 'localhost:3000'
-SITE_NAME = 'Frontend'
+# SITE_URL = 'http://localhost:3000'
+# DOMAIN = 'localhost:3000'
+# SITE_NAME = 'Frontend'
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
