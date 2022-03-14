@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'products',
     'visa',
-    'feedback',
+    #'feedback',
     'adminpanel'
 ]
 
@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'volcano1',
         'USER': 'postgres',
-        'PASSWORD': 'ahmed',
+        'PASSWORD': '12345',
         'HOST': 'localhost'
     }
 }

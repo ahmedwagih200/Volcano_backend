@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from products.models import *
 from products.forms import *
+from django.contrib.auth import login, authenticate, logout
+
 
 def home(req):
     return render(req , 'home.html')
@@ -122,3 +124,25 @@ def del_cate(req , id):
     Category.objects.filter(id=id).delete()
 
     return HttpResponseRedirect('/admin-cate')
+
+
+def login_view(req):
+
+    if req.method == 'GET':
+        return render(req , 'login.html')
+
+    else:
+        usr=User.objects.filter(email=req.POST['email'],password=req.POST['pwd'] , is_superuser=True )
+        #print(usr)
+        if len(usr)<1 :
+            msg='invalid login data...'
+            return render(req, "login.html" ,{'msg':msg})
+
+        else:
+            #login(req, usr.first())
+            return HttpResponseRedirect('/adminpanel')
+
+
+def logout_view(req):
+    return HttpResponseRedirect('/')
+       

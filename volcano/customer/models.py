@@ -26,7 +26,7 @@ class UserAccountManager(BaseUserManager):
         user.is_superuser = True
         user.is_staff = True
         user.is_active = True
-        user.set_password(password)
+        user.password= password
         user.save()
         return user
 

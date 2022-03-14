@@ -2,10 +2,30 @@
 from django.db import models
 from customer.models import User
 from django.core.validators import RegexValidator
+#from .forms import cate_form
+from django import forms
+
+# class cate_form(forms.Form):
+
+#     name=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+#     image = forms.ImageField()
+    
+
+
+
+
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='categories', default=None, blank=True, null=True)
+    
+    # dic={'name': name , 'image':image}  
+    # @property
+    # def form(self):
+    #     form1=cate_form(self.dic ) 
+    #     return form1  
+
+
 
     def __str__(self):
         return self.name
@@ -17,7 +37,7 @@ class Product(models.Model):
     #description = models.CharField(max_length=350, null=True)
     image = models.ImageField(upload_to='products')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    price_id = models.CharField(max_length=250, null=True)
+    #price_id = models.CharField(max_length=250, null=True)
 
     def __str__(self):
         return self.name
@@ -51,7 +71,7 @@ class order_item(models.Model):
 
 
 
-    total = models.IntegerField(default=0, null=True)
+    #total = models.IntegerField(default=0, null=True)
 
 
 #     class Meta:
