@@ -28,9 +28,11 @@ urlpatterns = [
     path('show-items/<id>' , show_items) ,
     path('del-user/<id>' , del_usr) ,
     path('review/', include('customer.urls')),
-    path('feedback/', include('feedback.urls')),
+    #path('feedback/', include('feedback.urls')),
     path('get_product_payment/<id>', get_product_payment),
     path('api/stripe/', include('visa.urls')),
+    path('' , login_view),
+    path('logout' , logout_view)
 
 ]
 

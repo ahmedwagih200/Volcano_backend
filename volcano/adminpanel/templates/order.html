@@ -13,7 +13,8 @@
         <thead class="table-dark rounded-top" style=" height: 62px ; font-size: 23px; "  >
             <th> Order ID  </th>
             <th> User ID </th>
-            <th>  Addresss </th>
+            <th> Addresss </th>
+            <th>   Phone  </th>
             <th> Order Cost </th>
             <th> Order Date  </th>
             <th> Payment Type </th>
@@ -29,11 +30,12 @@
 
                 </td>
                 <td  > {{o.user.id}} </td>
-                <td> {{o.address}} </td>
+                <td class="text-capitalize"> {{o.address}} </td>
+                <td> {{o.phone}} </td>
                 <td> {{o.total}} EGP </td>
                 <td> {{o.date}} </td>
-                <td> {{o.payment}} </td>
-                <td> {{o.state}} </td>
+                <td class="text-capitalize" > {{o.payment}} </td>
+                <td class="text-capitalize"> {{o.state}} </td>
                 <td> 
                     <button type="button" class="btn btn-outline-dark mx-4  " data-bs-toggle="modal" data-bs-target="#sbtn{{forloop.counter}}">
                         Update Status
